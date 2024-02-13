@@ -4,27 +4,8 @@ const detailProductStyles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  containerHeader: {
-    backgroundColor: '#cbcbcb',
-    height: '7%',
-  },
-  containerIconLeft: {
-    padding: '2%',
-    position: 'absolute',
-    marginTop: '2%',
-    left: '5%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 1,
-  },
-  titleHeader: {
-    marginTop: '5%',
-    textAlign: 'center',
-    fontSize: 14,
-    fontWeight: '800',
-  },
   imageDetail: {
-    marginTop: '10%',
+    marginTop: '5%',
     width: '90%',
     height: 300,
     alignSelf: 'center',

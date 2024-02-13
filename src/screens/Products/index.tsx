@@ -51,6 +51,7 @@ const ProductsScreen: React.FC<IProducts> = ({navigation}) => {
         color={'#146401'}
         size={25}
         style={productStyles.icon}
+        onPress={() => navigation.navigate('CreateProduct')}
       />
       <FlatList
         data={products}
