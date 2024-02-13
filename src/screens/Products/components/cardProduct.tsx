@@ -12,9 +12,10 @@ export interface ICardProduct {
     description: string;
     price: number;
   };
+  navigation: any;
 }
 
-export const CardProduct = ({item}: ICardProduct) => {
+export const CardProduct = ({item, navigation}: ICardProduct) => {
   const [valueFormattedWithSymbol] = formatCurrency({
     amount: Number(item.price),
     code: 'COP',
@@ -28,7 +29,9 @@ export const CardProduct = ({item}: ICardProduct) => {
         {valueFormattedWithSymbol}
       </Text>
       <View style={cartProductStyles.containerButtons}>
-        <Pressable style={cartProductStyles.containerButton}>
+        <Pressable
+          style={cartProductStyles.containerButton}
+          onPress={() => navigation.navigate('DetailProduct', {product: item})}>
           <Text style={cartProductStyles.textButton}>Ver Producto</Text>
         </Pressable>
         <Pressable style={cartProductStyles.containerButton}>

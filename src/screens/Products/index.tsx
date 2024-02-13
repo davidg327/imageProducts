@@ -23,7 +23,7 @@ export interface IItemProducts {
   };
 }
 
-const ProductsScreen: React.FC<IProducts> = ({}) => {
+const ProductsScreen: React.FC<IProducts> = ({navigation}) => {
   const {products} = useAppSelector(state => state.product);
   const dispatch = useAppDispatch();
 
@@ -32,7 +32,7 @@ const ProductsScreen: React.FC<IProducts> = ({}) => {
   }, []);
 
   const Item = ({item}: IItemProducts) => {
-    return <CardProduct item={item} />;
+    return <CardProduct item={item} navigation={navigation} />;
   };
 
   const Empty = () => {
