@@ -2,6 +2,8 @@ import {Image, Pressable, Text, View} from 'react-native';
 import React from 'react';
 import cartProductStyles from './styles.tsx';
 import {formatCurrency} from 'react-native-format-currency';
+import {getProducts} from '../../../store/product/reducer.ts';
+import {useAppDispatch, useAppSelector} from '../../../hooks/hook.ts';
 
 export interface ICardProduct {
   item: {
@@ -16,10 +18,16 @@ export interface ICardProduct {
 }
 
 export const CardProduct = ({item, navigation}: ICardProduct) => {
+  const dispatch = useAppDispatch();
+  const {products} = useAppSelector(state => state.product);
   const [valueFormattedWithSymbol] = formatCurrency({
     amount: Number(item.price),
     code: 'COP',
   });
+
+  const deleteProduct = (id: number) => {
+    dispatch(getProducts(products.filter(product => product.id !== id)));
+  };
 
   return (
     <View style={cartProductStyles.card}>
@@ -34,7 +42,9 @@ export const CardProduct = ({item, navigation}: ICardProduct) => {
           onPress={() => navigation.navigate('DetailProduct', {product: item})}>
           <Text style={cartProductStyles.textButton}>Ver Producto</Text>
         </Pressable>
-        <Pressable style={cartProductStyles.containerButton}>
+        <Pressable
+          style={cartProductStyles.containerButton}
+          onPress={() => deleteProduct(item.id)}>
           <Text style={cartProductStyles.textButton}>Borrar Producto</Text>
         </Pressable>
       </View>

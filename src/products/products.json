@@ -46,13 +46,5 @@
     "description": "Mug batidor color rosado viene con pilas 2A",
     "price": 28000,
     "stock": 5
-  },
-  {
-    "id": 7,
-    "name": "Mug batidor",
-    "image": "https://api.thivisha.com.co/storage/images/products/mug_batidora_electrico_1.jpeg",
-    "description": "Mug batidor color rosado viene con pilas 2A",
-    "price": 28000,
-    "stock": 5
   }
 ]
