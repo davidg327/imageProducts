@@ -4,10 +4,17 @@ const detailProductStyles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  imageDetail: {
+  imageDetailVertical: {
+    marginTop: '5%',
+    width: 250,
+    height: 300,
+    alignSelf: 'center',
+    borderRadius: 16,
+  },
+  imageDetailHorizontal: {
     marginTop: '5%',
     width: '90%',
-    height: 300,
+    height: 200,
     alignSelf: 'center',
     borderRadius: 16,
   },

@@ -13,7 +13,7 @@ import createProductStyles from './styles.tsx';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {useAppDispatch} from '../../hooks/hook.ts';
+import {useAppDispatch, useAppSelector} from '../../hooks/hook.ts';
 import {createProduct} from '../../store/product/reducer.ts';
 import {PORTRAIT} from 'react-native-orientation-locker';
 
@@ -26,6 +26,7 @@ const CreateProductScreen: React.FC<ICreateProduct> = ({navigation, route}) => {
   const {orientation} = route.params;
   const dispatch = useAppDispatch();
   const [photo, setPhoto] = useState({});
+  const {products} = useAppSelector(state => state.product);
 
   const creteSchema = Yup.object().shape({
     name: Yup.string().required('Nombre requerido'),
@@ -37,7 +38,9 @@ const CreateProductScreen: React.FC<ICreateProduct> = ({navigation, route}) => {
   const handleCreateProducts = (values: any) => {
     let body = {
       ...values,
+      id: products.length + 1,
       image: `file://${photo.path}`,
+      orientation: orientation === PORTRAIT ? 'vertical' : 'horizontal',
     };
     dispatch(createProduct(body));
     navigation.goBack();

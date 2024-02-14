@@ -5,7 +5,8 @@
     "image": "https://api.thivisha.com.co/storage/images/products/morral_mickey.jpeg",
     "description": "Maleta de Mickey Mouse roja, con varios bolsillos impermeable",
     "price": 70000,
-    "stock": 4
+    "stock": 4,
+    "orientation": "vertical"
   },
   {
     "id": 2,
@@ -13,7 +14,8 @@
     "image": "https://api.thivisha.com.co/storage/images/products/billetera_animal_rosada_1.jpeg",
     "description": "Billetera de cuero rosada con 3 espacios amplios",
     "price": 27000,
-    "stock": 2
+    "stock": 2,
+    "orientation": "vertical"
   },
   {
     "id": 3,
@@ -21,7 +23,8 @@
     "image": "https://api.thivisha.com.co/storage/images/products/parlante_speaker.jpeg",
     "description": "Parlante de color azúl con conexión por bluetooh, con radio FM y carga por puerto USB",
     "price": 40000,
-    "stock": 3
+    "stock": 3,
+    "orientation": "vertical"
   },
   {
     "id": 4,
@@ -29,7 +32,8 @@
     "image": "https://api.thivisha.com.co/storage/images/products/llavero_mickey.jpeg",
     "description": "Llavero de mickey con buzo negro",
     "price": 12000,
-    "stock": 1
+    "stock": 1,
+    "orientation": "vertical"
   },
   {
     "id": 5,
@@ -37,7 +41,8 @@
     "image": "https://api.thivisha.com.co/storage/images/products/soporte_celular_alalargable.jpeg",
     "description": "Soporte para celular con paticas alargables, de figuras de perrito",
     "price": 5000,
-    "stock": 8
+    "stock": 8,
+    "orientation": "vertical"
   },
   {
     "id": 6,
@@ -45,6 +50,7 @@
     "image": "https://api.thivisha.com.co/storage/images/products/mug_batidora_electrico_1.jpeg",
     "description": "Mug batidor color rosado viene con pilas 2A",
     "price": 28000,
-    "stock": 5
+    "stock": 5,
+    "orientation": "vertical"
   }
 ]

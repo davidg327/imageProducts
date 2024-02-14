@@ -5,7 +5,7 @@ import detailProductStyles from './styles.tsx';
 import FontAwesome from 'react-native-vector-icons/FontAwesome.js';
 import {formatCurrency} from 'react-native-format-currency';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import {HeaderComponent} from "../../components/header/header.tsx";
+import {HeaderComponent} from '../../components/header/header.tsx';
 
 export interface IDetailProduct {
   navigation: any;
@@ -33,7 +33,11 @@ const DetailProductScreen: React.FC<IDetailProduct> = ({navigation, route}) => {
       <Pressable onPress={() => setModalImage(true)}>
         <Image
           source={{uri: product.image}}
-          style={detailProductStyles.imageDetail}
+          style={
+            product.orientation === 'vertical'
+              ? detailProductStyles.imageDetailVertical
+              : detailProductStyles.imageDetailHorizontal
+          }
         />
       </Pressable>
       <View style={detailProductStyles.containerInfoText}>
