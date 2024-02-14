@@ -41,9 +41,15 @@ const createProductStyles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
-  imageProduct: {
-    width: 180,
+  imageProductVertical: {
+    width: 100,
     height: 180,
+    marginLeft: '5%',
+    marginTop: '3%',
+  },
+  imageProductHorizontal: {
+    width: 180,
+    height: 100,
     marginLeft: '5%',
     marginTop: '3%',
   },

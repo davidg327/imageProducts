@@ -2,6 +2,8 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Camera, useCameraDevice} from 'react-native-vision-camera';
 import {useTakeImage} from '../../hooks/use-take-image';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {PORTRAIT, useOrientationChange} from 'react-native-orientation-locker';
+import ImageResizer from '@bam.tech/react-native-image-resizer';
 
 export interface ITakeImageScreen {
   route: any;
@@ -12,6 +14,10 @@ export const TakeImageScreen: React.FC<ITakeImageScreen> = ({
   navigation,
 }) => {
   const {setPhoto} = route.params;
+  const [orientationState, setOrientation] = useState();
+  useOrientationChange(orientation => {
+    setOrientation(orientation);
+  });
 
   const [hasPermission, setHasPermission] = useState(false);
 
@@ -26,7 +32,7 @@ export const TakeImageScreen: React.FC<ITakeImageScreen> = ({
   const device = useCameraDevice('back');
 
   const takePhoto = useTakeImage();
-
+  console.log(orientationState, 'orientationState');
   return (
     <>
       {device != null && hasPermission && (
@@ -50,9 +56,23 @@ export const TakeImageScreen: React.FC<ITakeImageScreen> = ({
           backgroundColor: 'white',
         }}
         onPress={() =>
-          takePhoto(camera).then(response => {
-            setPhoto(response);
-            navigation.goBack();
+          takePhoto(camera).then(async response => {
+            let newPhoto = await ImageResizer.createResizedImage(
+              'file://' + response?.path || '',
+              1200,
+              720,
+              'JPEG',
+              90,
+              orientationState === PORTRAIT
+                ? 0
+                : orientationState === 'LANDSCAPE-LEFT'
+                ? 270
+                : 90,
+            );
+            setPhoto(newPhoto);
+            navigation.navigate('CreateProduct', {
+              orientation: orientationState,
+            });
           })
         }>
         <Text style={{color: 'black', textAlign: 'center'}}>Tomar foto</Text>

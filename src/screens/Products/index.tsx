@@ -7,6 +7,7 @@ import {getProducts} from '../../store/product/reducer.ts';
 import {CardProduct} from './components/cardProduct.tsx';
 // @ts-ignore
 import FontAwesome from 'react-native-vector-icons/FontAwesome.js';
+import {PORTRAIT} from 'react-native-orientation-locker';
 
 export interface IProducts {
   navigation: any;
@@ -51,7 +52,9 @@ const ProductsScreen: React.FC<IProducts> = ({navigation}) => {
         color={'#146401'}
         size={25}
         style={productStyles.icon}
-        onPress={() => navigation.navigate('CreateProduct')}
+        onPress={() =>
+          navigation.navigate('CreateProduct', {orientation: PORTRAIT})
+        }
       />
       <FlatList
         data={products}

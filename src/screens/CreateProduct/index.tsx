@@ -5,7 +5,8 @@ import {
   Text,
   View,
   Pressable,
-  Image, Alert,
+  Image,
+  Alert,
 } from 'react-native';
 import {HeaderComponent} from '../../components/header/header.tsx';
 import createProductStyles from './styles.tsx';
@@ -14,15 +15,18 @@ import * as Yup from 'yup';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {useAppDispatch} from '../../hooks/hook.ts';
 import {createProduct} from '../../store/product/reducer.ts';
+import {PORTRAIT} from 'react-native-orientation-locker';
 
 export interface ICreateProduct {
   navigation: any;
+  route: any;
 }
 
-const CreateProductScreen: React.FC<ICreateProduct> = ({navigation}) => {
+const CreateProductScreen: React.FC<ICreateProduct> = ({navigation, route}) => {
+  const {orientation} = route.params;
   const dispatch = useAppDispatch();
   const [photo, setPhoto] = useState({});
-  console.log(photo, 'photo');
+
   const creteSchema = Yup.object().shape({
     name: Yup.string().required('Nombre requerido'),
     description: Yup.string().required('Descripción requerida'),
@@ -48,7 +52,7 @@ const CreateProductScreen: React.FC<ICreateProduct> = ({navigation}) => {
           initialValues={{name: '', description: '', price: '', stock: ''}}
           validationSchema={creteSchema}
           onSubmit={values => handleCreateProducts(values)}>
-          {({errors, handleChange, handleBlur, handleSubmit, values}) => (
+          {({errors, handleChange, handleSubmit, values}) => (
             <>
               <View style={createProductStyles.containerInput}>
                 <TextInput
@@ -108,7 +112,11 @@ const CreateProductScreen: React.FC<ICreateProduct> = ({navigation}) => {
               {photo?.path && (
                 <Image
                   source={{uri: `file://${photo.path}`}}
-                  style={createProductStyles.imageProduct}
+                  style={
+                    orientation === PORTRAIT
+                      ? createProductStyles.imageProductVertical
+                      : createProductStyles.imageProductHorizontal
+                  }
                 />
               )}
               <Pressable
